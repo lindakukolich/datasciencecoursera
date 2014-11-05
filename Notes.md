@@ -95,24 +95,141 @@ Hacking Skills are needed partly because you can code and partly because you nee
     - Business analytics (data on customers)
     - Econometrics (economic data)
     - Statistical process controll (data about industrial processes)
-## R Programming Overview
-## Getting Data Overview
-## Exploratory Data Analysis Overview
-## Statistical Inference Overview
-## Regression Modes Overview
-## Practical Machine Learning Overview
-## Building Data PRoducts Overview
+
+## Courses in Data Science Track
+### R Programming Overview
+- Data types
+- Subsetting
+- Reading and writing data
+- Control structures
+- Fonctions
+- Scoping
+- Vectorized operations
+- Dates and times
+- Debugging
+- Simulation
+- Optimization
+
+- readLine
+- lapply
+
+### Getting Data Overview
+- Raw vs. tidy data
+  - Original source
+  - often hard to use for data analyses
+  - data analysis inclues processing
+  - raw data may only need to be processed once
+  - Processed data is ready for analysis
+  - processing can include merging, subsetting, transforming, etc
+  - All steps should be recorded
+- Downloading files
+- Reading data (Excel, XML, JSON, MySQL, HDF5, Web)
+  - dbConnect()
+  - merge()
+- Merging data
+- Reshaping data
+- Summerizing data
+- Finding and replacing
+- Data resources
+
+### Exploratory Data Analysis Overview
+- Principles of analytic graphics
+  1. Show comparisons
+  2. Show causality, mechanism, explanaton
+  3. Show multivariate data
+  4. Integrate multiple modes of evidence
+  5. Describe and document the evidence
+  6. Content is king
+- exploratory graphs
+- plotting systems in R
+  - base
+  - lattice
+  - ggplot2
+- Hierarchical clusting, k-means clustering, dimensional reduction
+
+### Reproducible Research Overview
+- Structure of Data Analysis
+  - Define the question
+  - Define the ideal data set
+  - Determine what data you can access
+  - Obtain the data
+  - clean the data
+  - Exploratory data analysis
+  - Statistical prediction/modeling
+  - Interpret results
+  - Challenge results
+  - Synthesize/write up results
+  - Create reproducible code
+- Organizing a Data Analysis
+  - Data, Raw and Processed
+  - Figures, Exploratory and Final
+  - R Code, Raw scripts and Final Scripts and Markdown files
+  - Text - Readme and Analysis files
+- Markdown
+- LaTeX
+- R Markdown
+- Evidence-based data analysis
+- RPubs
+
+### Statistical Inference Overview
+- Basic probability
+- Likelihood
+- Common distributions
+- Asymptotics
+- Confidence intervals
+- Hypothesis tests
+- Power
+- Bootstrapping
+- Non-parametric tests
+- Basic bayesian statistics
+
+### Regression Models Overview
+- Linear regression
+- Muliple regression
+- Confounding
+- Residuals and diagnostics
+- And so much more...
+- Regression to the mean
+- More math than some other classes, but they will deny us the Calculus that could make the derivations easy. :(
+
+### Practical Machine Learning Overview
+- Machine learning in R
+- There are other classes for Machine learning in other languages
+- caret
+- cross validation
+- prediction trees
+- forecasing
+- Sensitivity and specificity
+- Correlated predictors
+- boosting
+
+### Building Data Products Overview
+- How to build your own R package
+- rCharts, Slidify, Shiny
+
 # Week 2
 ## Command Line Interface
+
 ## Introduction to Git
+
 ## Introduction to GitHub
+
 ## Creating a GitHub Repository
+
 ## Basic Git Commands
+
 ## Basic Markdown
+
 ## Installing R Packages
+
 ## Installing Rtools
+
 # Week 3
+
 ## Types of Questions
+
 ## What is Data?
+
 ## What about Big Data?
+
 ## Experimental Design
