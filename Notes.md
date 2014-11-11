@@ -209,20 +209,103 @@ Hacking Skills are needed partly because you can code and partly because you nee
 
 # Week 2
 ## Command Line Interface
+- Describing how command line interfaces work, for folks who need to know what a directory is because they have only dealt with "folders" and GUIs up to now.
+- GitBash for windows folks, Terminal for Mac folks
+- pwd
+- mkdir
+- cd
+- cd ..
+- rm
+- rmdir
+- rm -r
+- clear
+- ls
+- ls -a
+- touch
+- cp
+- mv
+- date
+- echo
 
 ## Introduction to Git
+- Version control records changes so you can recall certain versions later
+- git config --globar user.name "Your Name"
+- git config --global user.email "your_email'
+- git config --list
 
 ## Introduction to GitHub
+- push and pull from the web
+- homepage to show your code
+- social aspect allows users to follow one another
+- "Build software better, together."
+- Edit your profile to help you take credit for your good work
 
 ## Creating a GitHub Repository
+- creating a repository using the GitHub GUI.
+- For 6 excruciating minutes
+- Granted, this would be more interesting if I were the target audience of the lecture...
+  - git init
+  - git remote add origin https://github.com/yourUserNameHere/test-repo.git
+- Also make a fork
+  - git clone https://github.com/yourUserNameHere/repoNameHere.git
+- git push
+- Promises that it is possible to keep a fork up to date, which will be interesting to see.
 
 ## Basic Git Commands
+- add
+  - add files in workspace to index
+  - git add . [ adds all new files ]
+  - git add -u [ updates tracking for files that changes names or were deleted ]
+  - git add -A [ both . and -u ]
+- commit
+  - save changes in the index to the local repository
+  - git commit -m "insert your message here"
+- push
+  - send local changes to GitHub
+- branches
+  - git checkout -b branchname
+  - git branch
+  - git checkout master
+- merge, pull request
+  - pull request is a feature of GitHub
+    - select a branch
+    - prepare pull request
+    - owner reviews and approves pull request, accepting changes
+- checkout (HEAD)
+- fetch
+- pull
+- diff (HEAD)
+- status
 
 ## Basic Markdown
+- File.md
+- Headings, Marked with increasing pound signs
+- unordered lists marked with asterix or dash
+- Good MD help within RStudio
 
 ## Installing R Packages
+- A big reason R is so cool is the large number of packages
+- a <- available.packages()
+- head(rownames(a), 3)
+- 5200 packages on CRAN
+- Packages at CRAN
+- Bioconductor Project for biological packages
+- Installing CRAN packages
+  - install.packages("slidify")
+  - install.packages(c("slidify", "ggplot2", "devtools"))
+  - takes care of dependencies for you, too
+  - Also Install Packages menu item in RStudio
+- Installing Bioconductor packages
+  - source("http://bioconductor.org/biocLite.R")
+  - biocLite()
+  - biocLite(c("GenomicFeatures", "AnnotationDbi"))
+- Load packages
+  - library(ggplot2)
+  - Note, do not put the package name in quotes when loading
+  - search() to see the functions exported by the package
 
 ## Installing Rtools
+- Needed by Windows Users, so I skipped this one.
 
 # Week 3
 
