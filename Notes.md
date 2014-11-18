@@ -310,9 +310,102 @@ Hacking Skills are needed partly because you can code and partly because you nee
 # Week 3
 
 ## Types of Questions
+* Descriptive
+  * Describe a set of data
+  * Commonly applied to census data
+  * Description and interpretation are different steps
+  * Ngram viewer from Google is an example
+* Exploratory
+  * Find relationships you didn't know about
+  * Useful for defining future studies
+  * Ususally not the final say and shouldn't be used for generalizing/predicint.
+  * Correlation does not imply causation
+* Inferential
+  * Use a relatively small sample of data to say something about a bigger population
+  * Inference is commonly the goal of statistical models
+  * Involves estimating the quantity you care about and the uncertainty
+  * Depends on population and sampling scheme
+  * "Effect of Air Pollution Control on Life Expectancy on the United States: An Analysis of 545 US Couties for the Period from 2000 - 2007
+* Predictive
+  * To use the data on some objects to predict values for another object
+  * If X predicts Y it does not mean that X causes Y
+  * Depends heavily on measureing the right variables
+  * More data ususally helps. Simple models really help
+  * FiveThirtyEight's prediction of the presidential election results
+* Causal
+  * To find out what happens to one variable when you make another variable change
+  * Ususally randomized studies are required to identify causation
+  * You need to make more assumptions to work with non-randomized data
+  * Causal relationships are usually identified as average effects
+  * Duodenal Infusion of Donor Feces for Recurrent C-difficile
+* Mechanistic
+  * Understand the exact changes in variables that lead to chainges in other individual objexts
+  * Incredibly hard to infer, except in simple situtations
+  * Usually modeled by a deteministic set of equations
+  * Generally the random component is measurement error
+  * Empirical Pavement Design
 
 ## What is Data?
+* Data are values of qualitative or quantitative variables, belonging to a set of items.
+* Set of Items: population
+* Qualitative: Country of origin, sex, treatment. Not ordered
+* Quantitative: Height, Weight. Can be ordered
+* Data examples
+  * Cat video frames
+  * Audio files
+  * API data, www.data.gov
+* Data is the second most importat thing in data science
+* The Most important thing is the question
 
 ## What about Big Data?
+* There is more data now than before
+* Don't use Hadoop, your data is not THAT big
+* The data may not conatin the answer. The combination of some data and an aching desire for an answer does not ensure that a reasonable ansewr can be extracted from a given body of data... , no matter how big the data are
 
 ## Experimental Design
+* An example of why you should care
+  * Genomic signatures to guide the use of chemotherapeutics (opens door to personalized medicide to tune treatment for cancer treatment. Exciting!)
+  * Deriving chemosensitivity from cell lines: forensic bioinformatics and reporducible sresearch in high-thorughput biology - flawed statistical analysis and unfortunately clinical trial has already started
+  * Lawsuit from the people enrolled in the trial against the investigators who developed the predictive model
+* Care about how your analysis will be done.
+* How do deal with data
+  * Plan for data and code sharing.
+  * Small amounts of data can go on github, larger on figshare. even larger found in the datasharing code we forked as part of our homework
+* Formulate your question in advance
+  * Question: Does changing the text on your website improve donations
+  * Experiment:
+    * Randomly show two versions of the web site
+    * record how much is donated
+    * determine which is better
+  * Analysis
+    * Statistical inference: Cannot show website to everyone)
+    * Population is all possible donors
+    * Select a smaller subset to show two versions of the website to
+    * Generate descriptive statistics to show donations per visit
+    * Generate inferential statistics to determine which one to use
+  * Shows 3 scenarios
+    * Small difference, large differnece in variability (Maybe worth changing, but cannot tell)
+    * Small difference in average result, small difference in variability (Definitely better, but difference is so small it may not be worth the cost of development)
+    * Large difference in average result, small difference in variability - probably worth making the change.
+ * Confounding - Show size versus literacy, ignoring age
+* Randomization and blocking
+  * If you can, fix a variable (use fixed text on the page)
+  * If you don't fix it, stratify it (use both phrases eqally on both web site)
+  * If you don't stratify it, randomize it (assumes you have a confounding variable. If there is a correlation between the confounding variable and the treatment, you can't tell if it is the treatment that worked, or the confounding variable that made it work)
+* Also showed us histgram curves that had a lot of overlap and two curves that didn't. 
+* Prediction Key Quantities
+  * Sensitivity Pr(positive test | disease) [Probability of a posititive test given that the patient has the disease)
+  * Specificity Pr(negative test | no disease)
+  * Positive Predictive Value Pr(disease | positive test)
+  * Negative Predictive Value Pr(no disease | negative test)
+  * Accuracy Pr(correct outcome) - though, not weighted, no maybe not the most useful
+* Beware of data dredging - keep trolling though the data till you find a subset that supports your conclusion
+* Summary 
+  * Good experiments
+    * Have replication
+    * Measrure variability
+    * Generalize to the problem you care about
+    * Are transparent (share code and data and make both easy to use)
+  * Prediction is not inference
+    * Both can be important
+  * Beware data dredging
