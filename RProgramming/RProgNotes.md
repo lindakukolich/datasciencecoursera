@@ -74,53 +74,70 @@ This was largely a repetition of the getting help lecture from Toolkit
     - attributes() allows you to set attributes of an object
   - Operators
     - Assignment
-      - x <- 1 # make a numeric vector, length 1, with 1 in the first element
-      - print x
-      - [1] 1
+```
+x <- 1 # make a numeric vector, length 1, with 1 in the first element
+print x
+[1] 1
+```
     - Comment
-      - # Comment
+```
+# Comment
+```
     - make a range
-      - x <- 1:20 # make a numeric vector, with the range 1,2,...,20 in it
-      - x  # autoprint x
-      - [1] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # first element on this line is number 1
-      - [16] 16 17 18 19 20 # first element on this line is number 16
+```
+x <- 1:20 # make a numeric vector, with the range 1,2,...,20 in it
+x  # autoprint x
+[1] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # first element on this line is number 1
+[16] 16 17 18 19 20 # first element on this line is number 16
+```
     - use c() to concatenate objects to make a vector
-      - x <- c("a", "b", "c")
-      - x <- x(1+0i, 2+4i)
+```
+x <- c("a", "b", "c")
+x <- x(1+0i, 2+4i)
     - use vector()
-      - x <- vector("numeric", length=10)  # 10 default numerics, that is, 10 0s
+```
+x <- vector("numeric", length=10)  # 10 default numerics, that is, 10
+0s
+```
     - mixing objects - coercion, will not be an error
       - find lowest common denomenator
-      - y <- c(1.7, "a") ## character: "1.7", "a"
-      - y <- c(TRUE, 2) ## numeric: 1, 2
-      - y <- c("a", TRUE) ## character: "a", "TRUE"
+```
+y <- c(1.7, "a") ## character: "1.7", "a"
+y <- c(TRUE, 2) ## numeric: 1, 2
+y <- c("a", TRUE) ## character: "a", "TRUE"
+```
       - explicit coercion as.TYPE()
-        - x <- 0:6
-	- class(x)
-	- [1] "integer"
-	- as.numeric(x)
-	- [1] 0 1 2 3 4 5 6
-	- as.logical(x)
-	- [1] FALSE TRUE TRUE TRUE TRUE TRUE TRUE
-	- as.character(x)
-	- [1] "0" "1" "2" "3" "4" "5" "6"
-      - nonsensical coercion results in NA
-        - as.numeric(c("a", "b", "c"))
-	- NA NA NA
+```
+x <- 0:6
+class(x)
+[1] "integer"
+as.numeric(x)
+[1] 0 1 2 3 4 5 6
+as.logical(x)
+[1] FALSE TRUE TRUE TRUE TRUE TRUE TRUE
+as.character(x)
+[1] "0" "1" "2" "3" "4" "5" "6"
+    - nonsensical coercion results in NA
+```
+as.numeric(c("a", "b", "c"))
+NA NA NA
+```
   - Matrices
-    - m <- matrix(nrow = 2, ncol = 3)
-    - dim(m)
-    - attributes(m)
-    - matrices are filled column-wise
-    - m <- matrix(1:6, nrow = 2, ncol = 3)
-    -      [,1] [,2] [,3]
-    - [1,]  1     3    5
-    - [2,]  2     4    6
+```
+m <- matrix(nrow = 2, ncol = 3)
+dim(m)
+attributes(m)
+# matrices are filled column-wise
+m <- matrix(1:6, nrow = 2, ncol = 3)
+    [,1] [,2] [,3]
+[1,]  1     3    5
+[2,]  2     4    6
+```
     - cbind - column bind
     - rbind - row bind
   - Lists
     - types can change. Probably how we do classes (structs), but using 1980s tech
-    - x <- list(1, "a", TRUE, 1 + 4i)
+    x <- list(1, "a", TRUE, 1 + 4i)
   - Factors
     - represent categorical data
     - unordered (male, female)
@@ -136,55 +153,63 @@ This was largely a repetition of the getting help lecture from Toolkit
       - default level order is alphabetical
   - is.na(), is.nan()
     - NA means it is missing
-    - x <- c(1, 2, NaN, NA, 4)
-    - is.na(x)
-    - [1] FALSE FALSE TRUE TRUE FALSE
-    - is nan(x)
-    - [1] FALSE FALSE TRUE FALSE FALSE
+```
+x <- c(1, 2, NaN, NA, 4)
+is.na(x)
+[1] FALSE FALSE TRUE TRUE FALSE
+is nan(x)
+[1] FALSE FALSE TRUE FALSE FALSE
+```
   - Data Frame
     - stores tabular data
     - list of lists, where each sublist has the same length
     - attribute row.names to name each row
     - read.table() and read.csv() to generate
     - convert to a matrix data.matrix()
-    - x <- data.frame(foo = 1:4, bar = c(T,T,F,F) rownames=c("one", "two", "three", "four"
-    - x
-    -   foo bar
-    - one  1  TRUE
-    - two  2  TRUE
-    - three  3  FALSE
-    - four  4  FALSE
+```
+x <- data.frame(foo = 1:4, bar = c(T,T,F,F) rownames=c("one", "two", "three", "four"
+x
+   foo bar
+one  1  TRUE
+two  2  TRUE
+three  3  FALSE
+four  4  FALSE
+```
   - Names
     - name elements in a vector
-      - x <- 1:3
-      - names(x) <- c("foo", "bar", "norf")
-      - x
-      -   foo bar norf
-      -    1   2   3
+    x <- 1:3
+    names(x) <- c("foo", "bar", "norf")
+    x
+      foo bar norf
+       1   2   3
     - can name lists
-      - x <- list(a = 1, b = 2, c = 3)
+    x <- list(a = 1, b = 2, c = 3)
     - can name matrices
-      - m <- matrix(1:4, nrow = 2, ncol = 2)
-      - dimnames(m) <- list (c("a", "b"), c("c", "d"))
+```
+m <- matrix(1:4, nrow = 2, ncol = 2)
+dimnames(m) <- list (c("a", "b"), c("c", "d"))
+```
 ### Subsetting objects
 - single square [ bracket returns a list of objects
 - double bracket [[ returns a single element
 - dollarsign $ extracts elements by name
 - example
-  - x <- c("a, "b", "c", "c", "d", "a")
-  - x[1]
-  - [1] "a"
-  - x[2]
-  - [1] "b"
-  - x[1:4]
-  - [1] "a" "b" "c" "c"
-  - x[x > "a"]
-  - [1] "b" "c" "c" "d"
-  - u <- x > "a"
-  - u
-  - [1] FALSE TRUE TRUE TRUE TRUE FALSE
-  - x[u]
-  - [1] "b" "c" "c" "d"
+```
+x <- c("a, "b", "c", "c", "d", "a")
+x[1]
+[1] "a"
+x[2]
+[1] "b"
+x[1:4]
+[1] "a" "b" "c" "c"
+x[x > "a"]
+[1] "b" "c" "c" "d"
+u <- x > "a"
+u
+[1] FALSE TRUE TRUE TRUE TRUE FALSE
+x[u]
+[1] "b" "c" "c" "d"
+```
 - matrices
   - matrix elements are taken with [row, col]
   - elements can be missing to take a row [1,] or column [,2]
@@ -194,19 +219,23 @@ This was largely a repetition of the getting help lecture from Toolkit
   - can use named elements within the brackets x[[$bar]]
   - can also do x$bar
 - double bracket can work with computed indices
-  - x <- list(foo = 1:4, bar = 0.5, baz = "hello")
-  - name <- "foo"
-  - x[[name]]
-  - [1] 1 2 3 4
-  - x$name  # Element 'name' does not exist
-  - NULL
-- double bracket can take an integer sequence, to extract multiple elements
-- partial matching
-  - x <- list(aardvark = 1:5)
-  - x$a # partial match
-  - x[["a"]] # No element named "a"
-  - NULL
-  - x[["a", exact = FALSE]] # partial match
+```
+x <- list(foo = 1:4, bar = 0.5, baz = "hello")
+name <- "foo"
+x[[name]]
+[1] 1 2 3 4
+x$name  # Element 'name' does not exist
+NULL
+```
+  - double bracket can take an integer sequence, to extract multiple elements
+  - partial matching
+```
+x <- list(aardvark = 1:5)
+x$a # partial match
+x[["a"]] # No element named "a"
+NULL
+x[["a", exact = FALSE]] # partial match
+```
 - common task is to remove missing values (NAs)
   - is.na() to give a vector of logicals for which values are missing
   - complete.cases() to extract elements with no missing values
@@ -236,9 +265,11 @@ This was largely a repetition of the getting help lecture from Toolkit
     - class (Type) of each column in dataset
     - can be figured out automatically, but that takes time with large datasets
     - read the first few rows to get the classes
-      - initial <- read.table("datatable.txt", nrows = 100)
-      - classes <- sapply(initial, class)
-      - tabAll <- read.table("datatable.txt", colClasses = classes)
+```
+initial <- read.table("datatable.txt", nrows = 100)
+classes <- sapply(initial, class)
+tabAll <- read.table("datatable.txt", colClasses = classes)
+```
   - nrows
     - number of rows in dataset
     - can be figured out automatically, but that takes time with large datasets
@@ -304,3 +335,115 @@ This was largely a repetition of the getting help lecture from Toolkit
     - return the indices of the elements in the vector ints that are less than 2
   - any() return whether any elements in the vector are TRUE
   - all() return whether all elements in the vector are TRUE
+
+## Week 2 - Programming with R
+
+### Control Structures
+- if/else if/else
+```
+if(<condition>) {
+ ## do something
+} else if (<condition2>) {
+  ## do something else
+} else {
+  ## Do a default thing
+}
+y <- if(x < 10) {
+  0
+} else {
+  10
+}
+  - for
+ for(i in VECTOR) {
+   print(i)
+}
+```
+    - seq_along(VECTOR) generates a vector 1:length(x)
+- while
+```
+while (z >= 3 && z <= 10) {
+  print (z)
+  coin <- rbinom(1, 1, 0.5)
+  if (coin == 1) { z <- z + 1 }
+  else {z <- z - 1 }
+}
+```
+- repeat
+  - an infinite loop
+  - use break to leave the loop
+- next
+  - skip the rest of the loop and start with the next iterator
+- return
+  - return from a function, which also does a break
+- apply
+  - better when in interactive environment, will discuss later
+
+### Functions
+Put them in their own files. We will eventually put them in R
+packages, but that is for later. The code can be editted within
+RStudio.
+
+```
+# return the sum of x and y
+add2 <- function(x, y) {
+  x + y
+}
+# return elements of x that are greater than n, which has a default value
+above <- function(x, n = 10) {
+  use <- x > n
+  x[use]
+}
+```
+Functions can be passed as arguments and function calls can be
+nested.
+
+There are formal argument and named arguments. Some functions can be
+missing or might have default values. You can name arguments in their
+calls. There seems to be nothing special about this, the names are
+just the names you gave the arguments in the declaration.
+
+He then went into lots of rules about when you can get sloppy about
+which arguments you set and how to figure out which arguments get
+assigned to what when you call a function. Basically, everything is
+positional, unless it is named. Having a named argument takes it out
+of the positional list and the rest of the arguments are assigned
+positionally to the remaining unnamed argument spots. You can use
+partial matching to name arguments. You can have ... as an
+argument. Pretty much you can do nearly anything, which of course will
+get you into trouble, but allow lazyness seems to be the watchword for
+this language, since it is supposed to get things done, not be formal.
+
+### Scoping
+If a function sees a symbol in the body, how does it know what the
+value is? Check global, and then check packages in a certain order. You
+can play with the package search order. 
+
+Lexical scoping. Symbols are found where the function was defined, not
+the call stack. Basically, an old solution to the need to define
+proper classes with private class variables.
+
+### Dates and Times
+- Date class
+  - Number of days since 1970-01-01
+- POSIXct and POSIXlt class
+  - Number of seconds since 1970-01-01
+  - POSIXct is a very large integer
+  - POSIXlt is a list with precalculated stored stuff, like day of year, day of week.
+```
+d <-as.Date("1970-01-01")
+unclass(date)  # gives the integer this is this day number
+# Most of the work seems to be 
+x <- Sys.time()
+weekdays(x)   # weekday name?
+months(x)     # month name
+quarters(x)   #Q1 Q2 Q3 Q4
+p <- as.POSIXlt(x)
+names(unclass(p))
+## [1] "sec" "min" "hour" "mday" "mon"
+## [6] "year" "wday" "yday" "isdst"
+datestring c("January 10, 2012 10:40", "December 9, 2011 9:10")
+x <- strptime(datestring, "%B %d %Y %H:%M")
+?strptime # print details
+```
+A lot of plotting functions recognize date and time objects and react
+appropriately.
