@@ -78,36 +78,23 @@ This was largely a repetition of the getting help lecture from Toolkit
 x <- 1 # make a numeric vector, length 1, with 1 in the first element
 print x
 [1] 1
-```
-    - Comment
-```
 # Comment
-```
-    - make a range
-```
+# Make a range
 x <- 1:20 # make a numeric vector, with the range 1,2,...,20 in it
 x  # autoprint x
 [1] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # first element on this line is number 1
 [16] 16 17 18 19 20 # first element on this line is number 16
-```
-    - use c() to concatenate objects to make a vector
-```
+## use c() to concatenate objects to make a vector
 x <- c("a", "b", "c")
 x <- x(1+0i, 2+4i)
-    - use vector()
-```
+## use vector()
 x <- vector("numeric", length=10)  # 10 default numerics, that is, 10
 0s
-```
-    - mixing objects - coercion, will not be an error
-      - find lowest common denomenator
-```
+## mixing objects - coercion, will not be an error, R will find lowest common denomenator
 y <- c(1.7, "a") ## character: "1.7", "a"
 y <- c(TRUE, 2) ## numeric: 1, 2
 y <- c("a", TRUE) ## character: "a", "TRUE"
-```
-      - explicit coercion as.TYPE()
-```
+## Use as.TYPE to do explicit coercion
 x <- 0:6
 class(x)
 [1] "integer"
@@ -117,13 +104,10 @@ as.logical(x)
 [1] FALSE TRUE TRUE TRUE TRUE TRUE TRUE
 as.character(x)
 [1] "0" "1" "2" "3" "4" "5" "6"
-    - nonsensical coercion results in NA
-```
+## nonsensical coercion results in NA
 as.numeric(c("a", "b", "c"))
 NA NA NA
-```
-  - Matrices
-```
+## Matrices
 m <- matrix(nrow = 2, ncol = 3)
 dim(m)
 attributes(m)
@@ -133,26 +117,27 @@ m <- matrix(1:6, nrow = 2, ncol = 3)
 [1,]  1     3    5
 [2,]  2     4    6
 ```
-    - cbind - column bind
-    - rbind - row bind
-  - Lists
-    - types can change. Probably how we do classes (structs), but using 1980s tech
-    x <- list(1, "a", TRUE, 1 + 4i)
-  - Factors
-    - represent categorical data
-    - unordered (male, female)
-    - ordered (assistant, associate, full, senior staff)
-    - treated specially by lm() and glm(), which fit linear functions
-    - factors let us use names (male and female) rather 1 and 2
-    - factor()
-      - input is a character vector
-      - returns vector and levels (male female)
-      - option levels = c ("yes", "no")
-    - table(x)
-      - gives counts of each "level"
-      - default level order is alphabetical
-  - is.na(), is.nan()
-    - NA means it is missing
+- Matrices
+  - cbind - column bind
+  - rbind - row bind
+- Lists
+  - types can change. Probably how we do classes (structs), but using 1980s tech
+  x <- list(1, "a", TRUE, 1 + 4i)
+- Factors
+  - represent categorical data
+  - unordered (male, female)
+  - ordered (assistant, associate, full, senior staff)
+  - treated specially by lm() and glm(), which fit linear functions
+  - factors let us use names (male and female) rather 1 and 2
+  - factor()
+    - input is a character vector
+    - returns vector and levels (male female)
+    - option levels = c ("yes", "no")
+  - table(x)
+    - gives counts of each "level"
+    - default level order is alphabetical
+- is.na(), is.nan()
+  - NA means it is missing
 ```
 x <- c(1, 2, NaN, NA, 4)
 is.na(x)
@@ -160,12 +145,12 @@ is.na(x)
 is nan(x)
 [1] FALSE FALSE TRUE FALSE FALSE
 ```
-  - Data Frame
-    - stores tabular data
-    - list of lists, where each sublist has the same length
-    - attribute row.names to name each row
-    - read.table() and read.csv() to generate
-    - convert to a matrix data.matrix()
+- Data Frame
+  - stores tabular data
+  - list of lists, where each sublist has the same length
+  - attribute row.names to name each row
+  - read.table() and read.csv() to generate
+  - convert to a matrix data.matrix()
 ```
 x <- data.frame(foo = 1:4, bar = c(T,T,F,F) rownames=c("one", "two", "three", "four"
 x
@@ -175,16 +160,16 @@ two  2  TRUE
 three  3  FALSE
 four  4  FALSE
 ```
-  - Names
-    - name elements in a vector
-    x <- 1:3
-    names(x) <- c("foo", "bar", "norf")
-    x
-      foo bar norf
-       1   2   3
-    - can name lists
-    x <- list(a = 1, b = 2, c = 3)
-    - can name matrices
+- Names
+  - name elements in a vector
+  x <- 1:3
+  names(x) <- c("foo", "bar", "norf")
+  x
+    foo bar norf
+     1   2   3
+  - can name lists
+  x <- list(a = 1, b = 2, c = 3)
+  - can name matrices
 ```
 m <- matrix(1:4, nrow = 2, ncol = 2)
 dimnames(m) <- list (c("a", "b"), c("c", "d"))
@@ -227,8 +212,8 @@ x[[name]]
 x$name  # Element 'name' does not exist
 NULL
 ```
-  - double bracket can take an integer sequence, to extract multiple elements
-  - partial matching
+- double bracket can take an integer sequence, to extract multiple elements
+- partial matching
 ```
 x <- list(aardvark = 1:5)
 x$a # partial match
@@ -270,39 +255,40 @@ initial <- read.table("datatable.txt", nrows = 100)
 classes <- sapply(initial, class)
 tabAll <- read.table("datatable.txt", colClasses = classes)
 ```
-  - nrows
-    - number of rows in dataset
-    - can be figured out automatically, but that takes time with large datasets
-    - use wc to make sure you only allocate as much space as you need
-  - comment.char
-    - comment character in file
-    - default #
-    - set to "" if there are no commented lines, to save time
-  - skip
-    - skip rows of non-data in head of file
-  - stringsAsFactors
-    - logical should character variables be factors?
-  - Memory concerns
-    - How much RAM do you have?
-    - what other apps are running
-    - what OS
-    - is this 32 or 64 bit?
-    - example
-      - 1,500,000 rows, 120 columns, all numeric
-      - 1.5e6 * 120 * 8bytes/numeric
-      - 1.44e9 / (2^30) Gbytes
-      - 1.34 GB
-  - Other Text formats
-    - dump, dput
-    - preserve metadata (types for instance) so you do not have to keep figuring it out
-    - plays nice with version control systems
-    - more robust to corruption
-    - takes up more space
-    - dput/dget works with a single object
-    - dump, source works with multiple objects
-  - connections open files or compressed files or web pages
-    - file, gzfile, bzfile, url
-    - connections are good for reading parts of a file, rather than reading a whole file
+- nrows
+  - number of rows in dataset
+  - can be figured out automatically, but that takes time with large datasets
+  - use wc to make sure you only allocate as much space as you need
+- comment.char
+  - comment character in file
+  - default #
+  - set to "" if there are no commented lines, to save time
+- skip
+  - skip rows of non-data in head of file
+- stringsAsFactors
+  - logical should character variables be factors?
+- Memory concerns
+  - How much RAM do you have?
+  - what other apps are running
+  - what OS
+  - is this 32 or 64 bit?
+  - example
+    - 1,500,000 rows, 120 columns, all numeric
+    - 1.5e6 * 120 * 8bytes/numeric
+    - 1.44e9 / (2^30) Gbytes
+    - 1.34 GB
+- Other Text formats
+  - dump, dput
+  - preserve metadata (types for instance) so you do not have to keep figuring it out
+  - plays nice with version control systems
+  - more robust to corruption
+  - takes up more space
+  - dput/dget works with a single object
+  - dump, source works with multiple objects
+- connections open files or compressed files or web pages
+  - file, gzfile, bzfile, url
+  - connections are good for reading parts of a file, rather than reading a whole file
+
 ### Swirl
 - Interactive R environment
 - worth extra credit
@@ -358,7 +344,7 @@ y <- if(x < 10) {
    print(i)
 }
 ```
-    - seq_along(VECTOR) generates a vector 1:length(x)
+- seq_along(VECTOR) generates a vector 1:length(x)
 - while
 ```
 while (z >= 3 && z <= 10) {
