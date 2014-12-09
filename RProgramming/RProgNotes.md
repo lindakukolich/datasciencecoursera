@@ -1,0 +1,306 @@
+## Background
+Installing R, Rstudio, GitHub, which I've already done, so I skipped those lectures.
+
+## Week 1 - R Nuts and Bolts
+Though not actually. This is not tiny details but an overview of R, skipping the cool packages that make it useful for actual Data Science work (Graphing and Machine Learning)
+
+### History of R
+- R an upgrade of S
+  - Fortran libraries for Statistical Modeling.
+  - Rewritten in C in 1988
+  - Statistical Models in S by Chambers and Hastie (the white book)
+  - Version 4 of S in 1998 Programming with Data by Chambers
+  - There was a big list of companies that had the development license for S, StatSci, ATT, Lucent
+  - The language hasn't changed much since 1998
+- S Philosophy
+  - Work in an interactive environment
+  - Gradually slide into programming
+- R starts in 1991 with Ihaka and Gentleman
+  - 1995 under GNU GPL
+  - R-help and R-devel mailing lists
+  - 1997 R Core Group formed, changes must be passed through them
+- R Pros and Cons
+  - Pros
+    - Similar to S (best in the transition time)
+    - Under active development
+    - Lean software with lots of modules
+    - Very good graphics
+    - interactive plus programming interface
+    - active user groups
+    - Free (you do not have to pay)
+    - Free (no restrictions on how it works)
+    - Free (can read source to modify it for your needs)
+    - Free (can redistribute)
+    - Free (can improve and release your improvements)
+  - Cons
+    - Based on 40 year old tech
+    - Little built in support for 3-D or dynamic graphics
+    - Functionality is based on consumer demand (if you want it and it isn't there, it is your job to add it)
+    - objects must be stored in physical memory (some advancements to deal with this)
+  - Design
+    - Base system
+      - utils, stats, datasets, graphics, grDevices, grid, methods, tools, parallel, compiler, splines, tcltk, stats4
+    - Modules
+      - boot, class, cluster, codetools, foreign, KernSmooth, lattics, mgcv, nlme, rpart, survival, MASS, spatial, nnet, Matrix, ...
+      - 4000 packages on CRAN
+      - other packages on http://bioconductor.org>Bioconductor
+      - packages on personal websites
+### Getting Help
+This was largely a repetition of the getting help lecture from Toolkit
+### R Basics
+- Objects
+  - Atomics
+    - character
+    - numeric (float/double)
+      - Inf is a number
+      - NaN is a non-number
+    - integer
+      - 1L is int, 1 is numeric
+    - complex
+    - logical (bool)
+  - Basic
+    - vector
+      - all objects share class
+    - list
+      - looks like a vector
+      - classes can be different
+    - vector() generates an empty vector
+  - Attributes
+    - names, dimnames
+    - dimensions (matrices, arrays)
+    - class
+    - length
+    - user-defined metadata
+    - attributes() allows you to set attributes of an object
+  - Operators
+    - Assignment
+      - x <- 1 # make a numeric vector, length 1, with 1 in the first element
+      - print x
+      - [1] 1
+    - Comment
+      - # Comment
+    - make a range
+      - x <- 1:20 # make a numeric vector, with the range 1,2,...,20 in it
+      - x  # autoprint x
+      - [1] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # first element on this line is number 1
+      - [16] 16 17 18 19 20 # first element on this line is number 16
+    - use c() to concatenate objects to make a vector
+      - x <- c("a", "b", "c")
+      - x <- x(1+0i, 2+4i)
+    - use vector()
+      - x <- vector("numeric", length=10)  # 10 default numerics, that is, 10 0s
+    - mixing objects - coercion, will not be an error
+      - find lowest common denomenator
+      - y <- c(1.7, "a") ## character: "1.7", "a"
+      - y <- c(TRUE, 2) ## numeric: 1, 2
+      - y <- c("a", TRUE) ## character: "a", "TRUE"
+      - explicit coercion as.TYPE()
+        - x <- 0:6
+	- class(x)
+	- [1] "integer"
+	- as.numeric(x)
+	- [1] 0 1 2 3 4 5 6
+	- as.logical(x)
+	- [1] FALSE TRUE TRUE TRUE TRUE TRUE TRUE
+	- as.character(x)
+	- [1] "0" "1" "2" "3" "4" "5" "6"
+      - nonsensical coercion results in NA
+        - as.numeric(c("a", "b", "c"))
+	- NA NA NA
+  - Matrices
+    - m <- matrix(nrow = 2, ncol = 3)
+    - dim(m)
+    - attributes(m)
+    - matrices are filled column-wise
+    - m <- matrix(1:6, nrow = 2, ncol = 3)
+    -      [,1] [,2] [,3]
+    - [1,]  1     3    5
+    - [2,]  2     4    6
+    - cbind - column bind
+    - rbind - row bind
+  - Lists
+    - types can change. Probably how we do classes (structs), but using 1980s tech
+    - x <- list(1, "a", TRUE, 1 + 4i)
+  - Factors
+    - represent categorical data
+    - unordered (male, female)
+    - ordered (assistant, associate, full, senior staff)
+    - treated specially by lm() and glm(), which fit linear functions
+    - factors let us use names (male and female) rather 1 and 2
+    - factor()
+      - input is a character vector
+      - returns vector and levels (male female)
+      - option levels = c ("yes", "no")
+    - table(x)
+      - gives counts of each "level"
+      - default level order is alphabetical
+  - is.na(), is.nan()
+    - NA means it is missing
+    - x <- c(1, 2, NaN, NA, 4)
+    - is.na(x)
+    - [1] FALSE FALSE TRUE TRUE FALSE
+    - is nan(x)
+    - [1] FALSE FALSE TRUE FALSE FALSE
+  - Data Frame
+    - stores tabular data
+    - list of lists, where each sublist has the same length
+    - attribute row.names to name each row
+    - read.table() and read.csv() to generate
+    - convert to a matrix data.matrix()
+    - x <- data.frame(foo = 1:4, bar = c(T,T,F,F) rownames=c("one", "two", "three", "four"
+    - x
+    -   foo bar
+    - one  1  TRUE
+    - two  2  TRUE
+    - three  3  FALSE
+    - four  4  FALSE
+  - Names
+    - name elements in a vector
+      - x <- 1:3
+      - names(x) <- c("foo", "bar", "norf")
+      - x
+      -   foo bar norf
+      -    1   2   3
+    - can name lists
+      - x <- list(a = 1, b = 2, c = 3)
+    - can name matrices
+      - m <- matrix(1:4, nrow = 2, ncol = 2)
+      - dimnames(m) <- list (c("a", "b"), c("c", "d"))
+### Subsetting objects
+- single square [ bracket returns a list of objects
+- double bracket [[ returns a single element
+- dollarsign $ extracts elements by name
+- example
+  - x <- c("a, "b", "c", "c", "d", "a")
+  - x[1]
+  - [1] "a"
+  - x[2]
+  - [1] "b"
+  - x[1:4]
+  - [1] "a" "b" "c" "c"
+  - x[x > "a"]
+  - [1] "b" "c" "c" "d"
+  - u <- x > "a"
+  - u
+  - [1] FALSE TRUE TRUE TRUE TRUE FALSE
+  - x[u]
+  - [1] "b" "c" "c" "d"
+- matrices
+  - matrix elements are taken with [row, col]
+  - elements can be missing to take a row [1,] or column [,2]
+  - drop can be set to FALSE to keep the system from dropping the dimensions, so you can get a 1x1 matrix with an element in it, rather than a vector length 1
+- list
+  - can use single or double brackets. Single bracket returns a list from a list, double returns just the elements instead of the elements with the name? Not clear.
+  - can use named elements within the brackets x[[$bar]]
+  - can also do x$bar
+- double bracket can work with computed indices
+  - x <- list(foo = 1:4, bar = 0.5, baz = "hello")
+  - name <- "foo"
+  - x[[name]]
+  - [1] 1 2 3 4
+  - x$name  # Element 'name' does not exist
+  - NULL
+- double bracket can take an integer sequence, to extract multiple elements
+- partial matching
+  - x <- list(aardvark = 1:5)
+  - x$a # partial match
+  - x[["a"]] # No element named "a"
+  - NULL
+  - x[["a", exact = FALSE]] # partial match
+- common task is to remove missing values (NAs)
+  - is.na() to give a vector of logicals for which values are missing
+  - complete.cases() to extract elements with no missing values
+### Vectorized Operations
+- Unary Operators automatically work on elements of a vector
+- Binary operators automatically work on  pairs of elements in pairs of vectors
+- default operator is element-wise on matrix
+- %*% to do true matrix multiplication
+### Reading data
+- Overview
+  - read.table, read.csv (Read tablular data) write.table
+  - readLines (read lines of a text file) writeLines
+  - source (read R code files) dump
+  - dget (read R code files) dput
+  - load (read saved workspaces) save
+  - unserialize (read binary object) serialize
+- read.table
+  - file
+    - name of file
+  - header
+    - logical indicating if the file has a header line
+  - sep
+    - separator for columns
+    - default is space
+    - default is comma for read.csv
+  - colClasses
+    - class (Type) of each column in dataset
+    - can be figured out automatically, but that takes time with large datasets
+    - read the first few rows to get the classes
+      - initial <- read.table("datatable.txt", nrows = 100)
+      - classes <- sapply(initial, class)
+      - tabAll <- read.table("datatable.txt", colClasses = classes)
+  - nrows
+    - number of rows in dataset
+    - can be figured out automatically, but that takes time with large datasets
+    - use wc to make sure you only allocate as much space as you need
+  - comment.char
+    - comment character in file
+    - default #
+    - set to "" if there are no commented lines, to save time
+  - skip
+    - skip rows of non-data in head of file
+  - stringsAsFactors
+    - logical should character variables be factors?
+  - Memory concerns
+    - How much RAM do you have?
+    - what other apps are running
+    - what OS
+    - is this 32 or 64 bit?
+    - example
+      - 1,500,000 rows, 120 columns, all numeric
+      - 1.5e6 * 120 * 8bytes/numeric
+      - 1.44e9 / (2^30) Gbytes
+      - 1.34 GB
+  - Other Text formats
+    - dump, dput
+    - preserve metadata (types for instance) so you do not have to keep figuring it out
+    - plays nice with version control systems
+    - more robust to corruption
+    - takes up more space
+    - dput/dget works with a single object
+    - dump, source works with multiple objects
+  - connections open files or compressed files or web pages
+    - file, gzfile, bzfile, url
+    - connections are good for reading parts of a file, rather than reading a whole file
+### Swirl
+- Interactive R environment
+- worth extra credit
+- Cool Commands
+  - seq_along(VECTOR)
+    - generates a sequence of numbers, 1:length(VECTOR)
+    - also equivalent to seq(along.with = VECTOR)
+  - rep(value, times = 10)
+    - repeat value 10 times, where value is a number or a vector
+  - rep(c(0, 1, 2), times = 3)
+    - 0 1 2 0 1 2 0 1 2
+  - rep(c(0, 1, 2), each=3)
+    - repeat each element of value 3 times
+    - 0 0 0 1 1 1 2 2 2
+  - paste(VECTOR_OF_STRINGS, collapse = " ")
+    - concatenate the elements of the vector together, using " " as the field separator
+    - sep=" " seems to do about the same thing as collapse. What is the difference?
+  - rnorm(NUMBER)
+    - generate NUMBER draws from a standard normal distribution (0 mean, unit variance?)
+  - sample(VECTOR, NUMBER)
+    - sample the elements of VECTOR, selecting NUMBER of them (without replacement)
+  - x[c(-2, -10)] OR x[-c(2, 10)]
+    - return a subset of X including everything BUT the 2nd and 10th entries
+  - a & b versus &&
+    - & uses recycling to repeat either a or b to give the same lengths, and then tests a[1] && b[1], a[2] && b[2], etc. That is, & is the vectorized version
+    - && tests just the first element of a against the first element of b
+  - && is evaluated before ||
+  - xor(), since there seems to be no xor operator
+  - which(ints < 2)
+    - return the indices of the elements in the vector ints that are less than 2
+  - any() return whether any elements in the vector are TRUE
+  - all() return whether all elements in the vector are TRUE
