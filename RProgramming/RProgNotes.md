@@ -15,7 +15,7 @@ Though not actually. This is not tiny details but an overview of R, skipping the
 - S Philosophy
   - Work in an interactive environment
   - Gradually slide into programming
-- R starts in 1991 with Ihaka and Gentleman
+- R starts in 1991 with Ihaka and Gentleman from New Zealand, U of Auckland
   - 1995 under GNU GPL
   - R-help and R-devel mailing lists
   - 1997 R Core Group formed, changes must be passed through them
